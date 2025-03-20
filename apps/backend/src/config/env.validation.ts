@@ -16,6 +16,7 @@ const envSchema = z.object({
   JWT_EXPIRATION: z.string().default('1h'),
   JWT_REFRESH_EXPIRATION: z.string().default('7d'),
 });
+export type EnvConfig = z.infer<typeof envSchema>;
 
 export function validateEnvVariables(config: Record<string, unknown>) {
   const parsed = envSchema.safeParse(config);
