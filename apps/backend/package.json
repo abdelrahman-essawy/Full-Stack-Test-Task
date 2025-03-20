@@ -38,6 +38,12 @@
             "buildTarget": "@easygenerator/backend:build:production"
           }
         }
+      },
+      "docker": {
+        "executor": "nx:run-commands",
+        "options": {
+            "command": "docker-compose up -d"
+        }
       }
     }
   }
