@@ -14,6 +14,7 @@ import {
   ValidationExceptionFilter,
 } from './common/filters';
 
+// TODO: add 'nestjs-pino'
 @Module({
   imports: [ConfigAppModule, DatabaseModule, AuthModule, UserModule],
   controllers: [],
