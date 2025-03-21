@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { User } from './user.schema';
 import { InternalServerErrorException } from '../../common/exceptions';
 import { UserRepository } from './user.repository';
+import { Types } from 'mongoose';
 
 @Injectable()
 export class UserService {
@@ -10,6 +11,14 @@ export class UserService {
   async findByEmail(email: string): Promise<User | null> {
     try {
       return await this.userRepository.findByEmail(email);
+    } catch (error) {
+      throw InternalServerErrorException.INTERNAL_SERVER_ERROR(error);
+    }
+  }
+
+  async findById(id: Types.ObjectId): Promise<User | null> {
+    try {
+      return await this.userRepository.findById(id);
     } catch (error) {
       throw InternalServerErrorException.INTERNAL_SERVER_ERROR(error);
     }

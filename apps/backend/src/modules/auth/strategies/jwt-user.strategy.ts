@@ -5,16 +5,13 @@ import { PassportStrategy } from '@nestjs/passport';
 import { JwtUserPayload } from '../interfaces/jwt-user-payload.interface';
 import { UnauthorizedException } from '../../../common/exceptions';
 import { EnvConfig } from '../../../config/env.validation';
-
-interface UserQueryService {
-  findById: (id: JwtUserPayload['user']) => Promise<any>;
-}
+import { UserService } from '../../user/user.service';
 
 @Injectable()
 export class JwtUserStrategy extends PassportStrategy(Strategy, 'authUser') {
   constructor(
     readonly configService: ConfigService<EnvConfig>,
-    private readonly userQueryService: UserQueryService
+    private readonly userService: UserService
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -23,16 +20,11 @@ export class JwtUserStrategy extends PassportStrategy(Strategy, 'authUser') {
   }
 
   async validate(payload: JwtUserPayload) {
-    const user = await this.userQueryService.findById(payload.user);
+    const user = await this.userService.findById(payload.user);
     if (!user) {
       throw UnauthorizedException.UNAUTHORIZED_ACCESS();
     }
-    if (!user.verified) {
-      throw UnauthorizedException.USER_NOT_VERIFIED();
-    }
-    if (payload.code !== user.registerCode) {
-      throw UnauthorizedException.REQUIRED_RE_AUTHENTICATION();
-    }
+
     delete user.password;
     return user;
   }
