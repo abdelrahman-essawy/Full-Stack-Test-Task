@@ -11,11 +11,13 @@ const envSchema = z.object({
     .string()
     .default('true')
     .transform((val) => val === 'true'),
+
   JWT_SECRET: z.string().min(10),
   JWT_REFRESH_SECRET: z.string().min(10),
   JWT_EXPIRATION: z.string().default('1h'),
   JWT_REFRESH_EXPIRATION: z.string().default('7d'),
 });
+
 export type EnvConfig = z.infer<typeof envSchema>;
 
 export function validateEnvVariables(config: Record<string, unknown>) {

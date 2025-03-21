@@ -1,9 +1,8 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { HttpException, HttpStatus } from '@nestjs/common';
-
 // Import internal files & modules
 import { ExceptionConstants } from './exceptions.constants';
-import { IException, IHttpInternalServerErrorExceptionResponse } from './exceptions.interface';
+import { IException } from './exceptions.interface';
 
 // Exception class for Internal Server Error
 export class InternalServerErrorException extends HttpException {
@@ -12,23 +11,23 @@ export class InternalServerErrorException extends HttpException {
     description: 'A unique code identifying the error.',
     example: ExceptionConstants.InternalServerErrorCodes.INTERNAL_SERVER_ERROR,
   })
-  code: number; // Internal status code
+  code: number | undefined;
 
   @ApiHideProperty()
-  cause: Error; // Error object causing the exception
+  override cause: Error | undefined;
 
   @ApiProperty({
     description: 'Message for the exception',
     example: 'An unexpected error occurred while processing your request.',
   })
-  message: string; // Message for the exception
+  override message: string;
 
   @ApiProperty({
     description: 'A description of the error message.',
     example:
       'The server encountered an unexpected condition that prevented it from fulfilling the request. This could be due to an error in the application code, a misconfiguration in the server, or an issue with the underlying infrastructure. Please try again later or contact the server administrator if the problem persists.',
   })
-  description: string; // Description of the exception
+  description: string | undefined; // Description of the exception
 
   @ApiProperty({
     description: 'Timestamp of the exception',
@@ -76,7 +75,15 @@ export class InternalServerErrorException extends HttpException {
    * @param message A string representing the message to include in the response body.
    * @returns An object representing the HTTP response body.
    */
-  generateHttpResponseBody = (message?: string): IHttpInternalServerErrorExceptionResponse => {
+  generateHttpResponseBody = (
+    message?: string
+  ): {
+    code: number | undefined;
+    description: string | undefined;
+    message: string;
+    timestamp: string;
+    traceId: string;
+  } => {
     return {
       code: this.code,
       message: message || this.message,
@@ -93,7 +100,8 @@ export class InternalServerErrorException extends HttpException {
    */
   static INTERNAL_SERVER_ERROR = (error: any) => {
     return new InternalServerErrorException({
-      message: 'We are sorry, something went wrong on our end. Please try again later or contact our support team for assistance.',
+      message:
+        'We are sorry, something went wrong on our end. Please try again later or contact our support team for assistance.',
       code: ExceptionConstants.InternalServerErrorCodes.INTERNAL_SERVER_ERROR,
       cause: error,
     });

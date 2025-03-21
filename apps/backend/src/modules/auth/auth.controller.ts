@@ -32,7 +32,6 @@ import { LoginReqDto, LoginResDto, SignupReqDto, SignupResDto } from './dtos';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // POST /auth/signup
   @ApiOkResponse({
     type: SignupResDto,
   })
@@ -44,7 +43,6 @@ export class AuthController {
     return this.authService.signup(signupReqDto);
   }
 
-  // POST /auth/login
   @ApiOkResponse({
     type: LoginResDto,
   })
