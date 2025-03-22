@@ -8,6 +8,9 @@
     },
     {
       "path": "./packages/validations"
+    },
+    {
+      "path": "./packages/api-sdk"
     }
-  ],
+  ]
 }
