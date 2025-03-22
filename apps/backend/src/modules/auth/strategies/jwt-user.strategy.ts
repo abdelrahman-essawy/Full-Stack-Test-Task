@@ -6,6 +6,7 @@ import { JwtUserPayload } from '../interfaces/jwt-user-payload.interface';
 import { UnauthorizedException } from '../../../common/exceptions';
 import { EnvConfig } from '../../../config/env.validation';
 import { UserService } from '../../user/user.service';
+import { User } from '../../user/user.schema';
 
 @Injectable()
 export class JwtUserStrategy extends PassportStrategy(Strategy, 'authUser') {
@@ -25,8 +26,6 @@ export class JwtUserStrategy extends PassportStrategy(Strategy, 'authUser') {
       throw UnauthorizedException.UNAUTHORIZED_ACCESS();
     }
 
-    delete user.password;
-    console.log(user);
-    return user;
+    return User.toResponse(user);
   }
 }
