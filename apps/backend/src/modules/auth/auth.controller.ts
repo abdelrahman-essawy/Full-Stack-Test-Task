@@ -1,12 +1,4 @@
-import {
-  ApiBadRequestResponse,
-  ApiBody,
-  ApiInternalServerErrorResponse,
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
-  ApiUnprocessableEntityResponse,
-} from '@nestjs/swagger';
+import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Body, ConflictException, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { zodToOpenAPI } from 'nestjs-zod';
@@ -20,21 +12,16 @@ import {
 } from './dtos';
 import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator';
 import { ERROR_MESSAGES } from '../../common/error-messages';
-import {
-  BadRequestException,
-  InternalServerErrorException,
-  UnauthorizedException,
-} from '../../common/exceptions';
-
-@ApiBadRequestResponse({
-  type: BadRequestException,
-})
-@ApiInternalServerErrorResponse({
-  type: InternalServerErrorException,
-})
-@ApiUnprocessableEntityResponse({
-  type: BadRequestException.VALIDATION_ERROR,
-})
+import { UnauthorizedException } from '../../common/exceptions';
+// @ApiBadRequestResponse({
+//   type: BadRequestException,
+// })
+// @ApiInternalServerErrorResponse({
+//   type: InternalServerErrorException,
+// })
+// @ApiUnprocessableEntityResponse({
+//   type: BadRequestException.VALIDATION_ERROR,
+// })
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
