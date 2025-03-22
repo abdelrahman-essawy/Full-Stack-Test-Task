@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "composite": true,
+    "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "importHelpers": true,
@@ -17,6 +18,7 @@
     "strict": true,
     "target": "es2022",
     "paths": {
+      "@easygenerator/api-sdk": ["./packages/api-sdk/src/index.ts"],
       "@easygenerator/validations": ["./packages/validations/src/index.ts"]
     }
   }

@@ -3,6 +3,9 @@
   "include": [],
   "references": [
     {
+      "path": "../../packages/api-sdk"
+    },
+    {
       "path": "./tsconfig.app.json"
     },
     {

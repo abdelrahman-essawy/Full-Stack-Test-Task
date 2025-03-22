@@ -14,6 +14,10 @@ async function bootstrap() {
     })
   );
   app.use(cookieParser());
+  app.enableCors({
+    credentials: true,
+    origin: 'http://localhost:4200',
+  });
 
   if (process.env.NODE_ENV !== 'production') {
     const config = new DocumentBuilder()

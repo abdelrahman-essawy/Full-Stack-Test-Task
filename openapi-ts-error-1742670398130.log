@@ -1,7 +1,0 @@
-🚫 missing input - which OpenAPI specification should we use to generate your output?
-Error: 🚫 missing input - which OpenAPI specification should we use to generate your output?
-    at C:\Users\Abbas\WebstormProjects\Full-Stack-Test-Task\node_modules\.pnpm\@hey-api+openapi-ts@0.64.13_typescript@5.7.3\node_modules\@hey-api\openapi-ts\dist\index.cjs:15:60793
-    at Array.map (<anonymous>)
-    at nc (C:\Users\Abbas\WebstormProjects\Full-Stack-Test-Task\node_modules\.pnpm\@hey-api+openapi-ts@0.64.13_typescript@5.7.3\node_modules\@hey-api\openapi-ts\dist\index.cjs:15:60567)
-    at async aj (C:\Users\Abbas\WebstormProjects\Full-Stack-Test-Task\node_modules\.pnpm\@hey-api+openapi-ts@0.64.13_typescript@5.7.3\node_modules\@hey-api\openapi-ts\dist\index.cjs:1311:4415)
-    at async start (C:\Users\Abbas\WebstormProjects\Full-Stack-Test-Task\node_modules\.pnpm\@hey-api+openapi-ts@0.64.13_typescript@5.7.3\node_modules\@hey-api\openapi-ts\bin\index.cjs:124:21)
