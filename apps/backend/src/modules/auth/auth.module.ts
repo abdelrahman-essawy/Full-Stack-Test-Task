@@ -15,14 +15,14 @@ import { EnvConfig } from '../../config/env.validation';
       inject: [ConfigService],
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService<EnvConfig>) => ({
-        privateKey: configService.get('JWT_SECRET'),
-        publicKey: configService.get('JWT_SECRET'),
+        secret: configService.get('JWT_SECRET'),
         signOptions: {
           expiresIn: configService.get('JWT_EXPIRATION'),
-          algorithm: 'RS256',
+          // TODO: in production, use `RS256` algorithm
+          algorithm: 'HS256',
         },
         verifyOptions: {
-          algorithms: ['RS256'],
+          algorithms: ['HS256'],
         },
       }),
     }),

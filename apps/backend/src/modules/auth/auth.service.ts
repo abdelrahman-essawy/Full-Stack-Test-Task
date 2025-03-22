@@ -25,11 +25,11 @@ export class AuthService {
     const saltOrRounds = this.SALT_ROUNDS;
     const hashedPassword = await bcrypt.hash(password, saltOrRounds);
 
-    // refactored to use the User class constructor
-    const newUser = new User();
-    newUser.email = email;
-    newUser.password = hashedPassword;
-    newUser.name = name;
+    const newUser = new User({
+      email,
+      password: hashedPassword,
+      name,
+    });
 
     await this.userService.create(newUser);
 
@@ -46,7 +46,11 @@ export class AuthService {
       throw UnauthorizedException.UNAUTHORIZED_ACCESS('Invalid credentials');
     }
 
-    const isPasswordValid = bcrypt.compare(password, <string>user.password);
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      <string>user.password
+    );
+
     if (!isPasswordValid) {
       throw UnauthorizedException.UNAUTHORIZED_ACCESS('Invalid credentials');
     }
@@ -58,12 +62,10 @@ export class AuthService {
 
     const accessToken = await this.jwtService.signAsync(payload);
 
-    delete user.password;
-
-    return {
-      message: 'Login successful',
+    return new LoginResDto(
+      'Login successful',
       accessToken,
-      user,
-    };
+      User.toResponse(user)
+    );
   }
 }

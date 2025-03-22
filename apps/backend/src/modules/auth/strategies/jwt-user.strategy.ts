@@ -26,6 +26,7 @@ export class JwtUserStrategy extends PassportStrategy(Strategy, 'authUser') {
     }
 
     delete user.password;
+    console.log(user);
     return user;
   }
 }

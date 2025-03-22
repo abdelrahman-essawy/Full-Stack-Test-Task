@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-
 import { User } from '../../user/user.schema';
 
 export class LoginResDto {
@@ -19,4 +18,11 @@ export class LoginResDto {
     type: User,
   })
   user: User;
+
+  constructor(message: string, accessToken: string, user: User) {
+    this.message = message;
+    this.accessToken = accessToken;
+    delete user.password;
+    this.user = user;
+  }
 }

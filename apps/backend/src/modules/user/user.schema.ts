@@ -47,6 +47,15 @@ export class User {
   })
   @Prop()
   updatedAt?: Date;
+
+  constructor(partial: Partial<User>) {
+    Object.assign(this, partial);
+  }
+
+  static toResponse(dto: Partial<User>) {
+    const { _id, email, name, createdAt, updatedAt } = dto;
+    return new User({ _id, email, name, createdAt, updatedAt });
+  }
 }
 
 export type UserDocument = HydratedDocument<User>;
