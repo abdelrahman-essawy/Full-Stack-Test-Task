@@ -31,5 +31,8 @@
         }
       }
     }
+  },
+  "devDependencies": {
+    "@nx/react": "^20.6.2"
   }
 }
