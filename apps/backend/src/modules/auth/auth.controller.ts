@@ -1,5 +1,5 @@
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Body, ConflictException, Controller, Post } from '@nestjs/common';
+import { Body, ConflictException, Controller, Post, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { zodToOpenAPI } from 'nestjs-zod';
 import {
@@ -13,6 +13,7 @@ import {
 import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator';
 import { ERROR_MESSAGES } from '../../common/error-messages';
 import { UnauthorizedException } from '../../common/exceptions';
+import express from 'express';
 // @ApiBadRequestResponse({
 //   type: BadRequestException,
 // })
@@ -58,7 +59,15 @@ export class AuthController {
     schema: zodToOpenAPI(loginSchema),
   })
   @Post('login')
-  async login(@Body() loginReqDto: LoginReqDto): Promise<LoginResDto> {
-    return this.authService.login(loginReqDto);
+  async login(@Body() loginReqDto: LoginReqDto, @Res() res: express.Response) {
+    const { accessToken } = await this.authService.login(loginReqDto);
+
+    res.cookie('token', accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+    });
+
+    return res.json({ message: 'User logged in successfully' });
   }
 }
