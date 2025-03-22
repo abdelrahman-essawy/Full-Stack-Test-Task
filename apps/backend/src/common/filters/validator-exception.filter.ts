@@ -8,11 +8,13 @@ import {
 import { HttpAdapterHost } from '@nestjs/core';
 import { ValidationError } from 'class-validator';
 import { BadRequestException } from '../exceptions';
+import { ZodValidationException } from 'nestjs-zod';
 
 /**
  * An exception filter to handle validation errors thrown by class-validator.
  */
 @Catch(ValidationError)
+@Catch(ZodValidationException)
 export class ValidationExceptionFilter implements ExceptionFilter {
   private readonly logger = new Logger(ValidationExceptionFilter.name);
 

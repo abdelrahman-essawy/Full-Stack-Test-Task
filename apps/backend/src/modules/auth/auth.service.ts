@@ -1,14 +1,11 @@
 import * as bcrypt from 'bcryptjs';
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { JwtUserPayload } from './interfaces/jwt-user-payload.interface';
 import { LoginReqDto, LoginResDto, SignupReqDto, SignupResDto } from './dtos';
 import { User } from '../user/user.schema';
 import { UserService } from '../user/user.service';
-import {
-  BadRequestException,
-  UnauthorizedException,
-} from '../../common/exceptions';
+import { UnauthorizedException } from '../../common/exceptions';
 
 @Injectable()
 export class AuthService {
@@ -23,11 +20,7 @@ export class AuthService {
     const { email, password, name } = signupReqDto;
 
     const user = await this.userService.findByEmail(email);
-    if (user) {
-      throw BadRequestException.RESOURCE_ALREADY_EXISTS(
-        `User with email ${email} already exists`
-      );
-    }
+    if (user) throw new ConflictException();
 
     const saltOrRounds = this.SALT_ROUNDS;
     const hashedPassword = await bcrypt.hash(password, saltOrRounds);

@@ -1,8 +1,5 @@
-import { Module, ValidationPipe } from '@nestjs/common';
-import { ConfigAppModule } from './config/config.module';
-import { DatabaseModule } from './database/database.module';
-import { AuthModule } from './modules/auth/auth.module';
-import { UserModule } from './modules/user/user.module';
+import { MiddlewareConsumer, Module, ValidationPipe } from '@nestjs/common';
+import { ZodValidationPipe } from 'nestjs-zod';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { ValidationError } from 'class-validator';
 import {
@@ -11,16 +8,44 @@ import {
   ForbiddenExceptionFilter,
   NotFoundExceptionFilter,
   UnauthorizedExceptionFilter,
-  ValidationExceptionFilter,
 } from './common/filters';
+import { ConfigAppModule } from './config/config.module';
+import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
+import { LoggerModule } from 'nestjs-pino';
+import { Request } from 'express';
+import { getCorrelationId } from './common/utils';
+import { RequestsLogMiddleware } from './common/middlewares/requests-log-middleware';
 
 // TODO: add 'nestjs-pino'
 @Module({
-  imports: [ConfigAppModule, DatabaseModule, AuthModule, UserModule],
+  imports: [
+    LoggerModule.forRootAsync({
+      useFactory: async () => {
+        return {
+          pinoHttp: {
+            autoLogging: false,
+            base: null,
+            quietReqLogger: true,
+            transport:
+              process.env.NODE_ENV !== 'production'
+                ? { target: 'pino-pretty' }
+                : undefined,
+            genReqId: (req: Request) => getCorrelationId(req),
+            level: 'debug',
+          },
+        };
+      },
+    }),
+    ConfigAppModule,
+    DatabaseModule,
+    AuthModule,
+    UserModule,
+  ],
   controllers: [],
   providers: [
     { provide: APP_FILTER, useClass: AllExceptionsFilter },
-    { provide: APP_FILTER, useClass: ValidationExceptionFilter },
     { provide: APP_FILTER, useClass: BadRequestExceptionFilter },
     { provide: APP_FILTER, useClass: UnauthorizedExceptionFilter },
     { provide: APP_FILTER, useClass: ForbiddenExceptionFilter },
@@ -37,6 +62,15 @@ import {
           },
         }),
     },
+
+    {
+      provide: APP_PIPE,
+      useClass: ZodValidationPipe,
+    },
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(RequestsLogMiddleware).forRoutes('*');
+  }
+}
