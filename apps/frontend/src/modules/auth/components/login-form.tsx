@@ -9,6 +9,7 @@ import { Label } from '../../../ui/label';
 import { Input } from '../../../ui/input';
 import { LabelInputContainer } from '../../../ui/label-input-container';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useUserStore } from '../user.store';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -17,21 +18,22 @@ const loginSchema = z.object({
 
 export function LoginForm() {
   const navigate = useNavigate();
-  const { mutateAsync, isPending } = useMutation({
-    ...authControllerLoginMutation(),
-    onSuccess: (data) => {
-      toast.success(data.message);
-      navigate('/home');
-    },
-    onError: (error) => toast.error(error.message),
-  });
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(loginSchema),
+  });
+
+  const { mutateAsync, isPending } = useMutation({
+    ...authControllerLoginMutation(),
+    onSuccess: (data) => {
+      useUserStore.setState({ user: data.user });
+      toast.success(data.message);
+      navigate('/home');
+    },
+    onError: (error) => toast.error(error.message),
   });
 
   const onSubmit = async (data: any) => {

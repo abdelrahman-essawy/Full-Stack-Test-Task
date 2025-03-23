@@ -1,10 +1,6 @@
 ﻿import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import {
-  client,
-  User,
-  userControllerGetCurrentUser,
-} from '@easygenerator/api-sdk';
+import { User, userControllerGetCurrentUser } from '@easygenerator/api-sdk';
 
 interface UserState {
   user: User | null;
@@ -12,11 +8,6 @@ interface UserState {
   clearUser: () => void;
   fetchUser: () => Promise<void>;
 }
-
-client.setConfig({
-  baseUrl: 'http://localhost:3000',
-  credentials: 'include',
-});
 
 export const useUserStore = create<UserState>()(
   devtools((set) => {

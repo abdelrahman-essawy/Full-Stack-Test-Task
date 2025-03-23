@@ -46,6 +46,13 @@ export type LoginResDto = {
     user: User;
 };
 
+export type BackendResponseDto = {
+    /**
+     * Message to the user
+     */
+    message: string;
+};
+
 export type GetProfileResDto = {
     /**
      * Message to the user
@@ -109,6 +116,19 @@ export type AuthControllerLoginResponses = {
 };
 
 export type AuthControllerLoginResponse = AuthControllerLoginResponses[keyof AuthControllerLoginResponses];
+
+export type AuthControllerLogoutData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/auth/logout';
+};
+
+export type AuthControllerLogoutResponses = {
+    200: BackendResponseDto;
+};
+
+export type AuthControllerLogoutResponse = AuthControllerLogoutResponses[keyof AuthControllerLogoutResponses];
 
 export type UserControllerGetCurrentUserData = {
     body?: never;

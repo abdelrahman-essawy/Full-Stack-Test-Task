@@ -8,6 +8,7 @@ import { ERROR_MESSAGES } from '../../common/error-messages';
 import { UnauthorizedException } from '../../common/exceptions';
 import express from 'express';
 import { loginSchema, signUpSchema } from '@easygenerator/validations';
+import { BackendResponseDto } from '../../common/dto/backend-response.dto';
 // @ApiBadRequestResponse({
 //   type: BadRequestException,
 // })
@@ -54,7 +55,9 @@ export class AuthController {
   })
   @Post('login')
   async login(@Body() loginReqDto: LoginReqDto, @Res() res: express.Response) {
-    const { accessToken } = await this.authService.login(loginReqDto);
+    const { accessToken, message, user } = await this.authService.login(
+      loginReqDto
+    );
 
     res.cookie('token', accessToken, {
       httpOnly: true,
@@ -62,6 +65,18 @@ export class AuthController {
       sameSite: 'strict',
     });
 
-    return res.json({ message: 'User logged in successfully' });
+    res.json(new LoginResDto(message, accessToken, user));
+  }
+
+  @ApiOperation({
+    summary: 'Logout a user',
+  })
+  @ApiOkResponse({
+    type: BackendResponseDto,
+  })
+  @Post('logout')
+  async logout(@Res() res: express.Response) {
+    res.clearCookie('token');
+    return res.json({ message: 'User logged out successfully' });
   }
 }

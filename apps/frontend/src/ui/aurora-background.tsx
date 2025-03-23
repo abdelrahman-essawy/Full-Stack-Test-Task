@@ -1,11 +1,11 @@
 ﻿'use client';
 import React, { ReactNode } from 'react';
 import { cn } from '../utils';
-import LogoSvg from '../assets/logo.svg';
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
   showRadialGradient?: boolean;
+  header?: ReactNode;
 }
 
 export const AuroraBackground = ({
@@ -23,10 +23,7 @@ export const AuroraBackground = ({
         )}
         {...props}
       >
-        <div className="absolute top-4 left-4">
-          <LogoSvg />
-        </div>
-
+        {props.header}
         <div
           className="absolute inset-0 overflow-hidden"
           style={

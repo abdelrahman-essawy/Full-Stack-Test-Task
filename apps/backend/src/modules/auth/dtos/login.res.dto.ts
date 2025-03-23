@@ -1,13 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from '../../user/user.schema';
+import { BackendResponseDto } from '../../../common/dto/backend-response.dto';
 
-export class LoginResDto {
-  @ApiProperty({
-    description: 'Message to the user',
-    example: 'Login successful',
-  })
-  message: string;
-
+export class LoginResDto extends BackendResponseDto {
   @ApiProperty({
     description: 'Access token for the user',
   })
@@ -20,6 +15,7 @@ export class LoginResDto {
   user: User;
 
   constructor(message: string, accessToken: string, user: User) {
+    super();
     this.message = message;
     this.accessToken = accessToken;
     delete user.password;
