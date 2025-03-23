@@ -1,4 +1,9 @@
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Controller, Get, HttpCode, Logger, UseGuards } from '@nestjs/common';
 import { GetProfileResDto } from './dtos';
 import { GetUser } from '../auth/decorators/get-user.decorator';
@@ -17,7 +22,10 @@ export class UserController {
     type: GetProfileResDto,
   })
   @Get('me')
-  async getFullAccess(
+  @ApiOperation({
+    summary: 'Get current user profile',
+  })
+  async getCurrentUser(
     @GetUser() user: UserDocument
   ): Promise<GetProfileResDto> {
     this.logger.debug(`User ${user.email} requested their profile`);

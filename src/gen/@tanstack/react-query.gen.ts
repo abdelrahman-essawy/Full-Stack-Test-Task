@@ -3,10 +3,11 @@
 import { type Options, authControllerSignup, authControllerLogin, userControllerGetCurrentUser } from '../sdk.gen';
 import { queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 import type { AuthControllerSignupData, AuthControllerSignupError, AuthControllerSignupResponse, AuthControllerLoginData, AuthControllerLoginError, AuthControllerLoginResponse, UserControllerGetCurrentUserData } from '../types.gen';
+import type { AxiosError } from 'axios';
 import { client as _heyApiClient } from '../client.gen';
 
 export type QueryKey<TOptions extends Options> = [
-    Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
+    Pick<TOptions, 'baseURL' | 'body' | 'headers' | 'path' | 'query'> & {
         _id: string;
         _infinite?: boolean;
     }
@@ -15,7 +16,7 @@ export type QueryKey<TOptions extends Options> = [
 const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions, infinite?: boolean): [
     QueryKey<TOptions>[0]
 ] => {
-    const params: QueryKey<TOptions>[0] = { _id: id, baseUrl: (options?.client ?? _heyApiClient).getConfig().baseUrl } as QueryKey<TOptions>[0];
+    const params: QueryKey<TOptions>[0] = { _id: id, baseURL: (options?.client ?? _heyApiClient).getConfig().baseURL } as QueryKey<TOptions>[0];
     if (infinite) {
         params._infinite = infinite;
     }
@@ -54,7 +55,7 @@ export const authControllerSignupOptions = (options: Options<AuthControllerSignu
 };
 
 export const authControllerSignupMutation = (options?: Partial<Options<AuthControllerSignupData>>) => {
-    const mutationOptions: UseMutationOptions<AuthControllerSignupResponse, AuthControllerSignupError, Options<AuthControllerSignupData>> = {
+    const mutationOptions: UseMutationOptions<AuthControllerSignupResponse, AxiosError<AuthControllerSignupError>, Options<AuthControllerSignupData>> = {
         mutationFn: async (localOptions) => {
             const { data } = await authControllerSignup({
                 ...options,
@@ -85,7 +86,7 @@ export const authControllerLoginOptions = (options: Options<AuthControllerLoginD
 };
 
 export const authControllerLoginMutation = (options?: Partial<Options<AuthControllerLoginData>>) => {
-    const mutationOptions: UseMutationOptions<AuthControllerLoginResponse, AuthControllerLoginError, Options<AuthControllerLoginData>> = {
+    const mutationOptions: UseMutationOptions<AuthControllerLoginResponse, AxiosError<AuthControllerLoginError>, Options<AuthControllerLoginData>> = {
         mutationFn: async (localOptions) => {
             const { data } = await authControllerLogin({
                 ...options,

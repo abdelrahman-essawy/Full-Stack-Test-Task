@@ -5,7 +5,7 @@ export default defineConfig({
   output: 'src/gen',
   plugins: [
     ...defaultPlugins,
-    '@hey-api/client-fetch',
+    '@hey-api/client-axios',
     '@tanstack/react-query',
   ],
 });

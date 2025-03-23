@@ -124,5 +124,5 @@ export type UserControllerGetCurrentUserResponses = {
 export type UserControllerGetCurrentUserResponse = UserControllerGetCurrentUserResponses[keyof UserControllerGetCurrentUserResponses];
 
 export type ClientOptions = {
-    baseUrl: string;
+    baseURL: string;
 };
