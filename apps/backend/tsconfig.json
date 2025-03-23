@@ -4,7 +4,7 @@
   "include": [],
   "references": [
     {
-      "path": "../../packages/validations-nest"
+      "path": "../../packages/validations"
     },
     {
       "path": "./tsconfig.app.json"

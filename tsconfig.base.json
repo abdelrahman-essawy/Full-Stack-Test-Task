@@ -19,8 +19,8 @@
     "target": "es2022",
     "paths": {
       "@easygenerator/api-sdk": ["./packages/api-sdk/src/index.ts"],
-      "@easygenerator/validations-nest": [
-        "./packages/validations-nest/src/index.ts"
+      "@easygenerator/validations": [
+        "./packages/validations/src/index.ts"
       ]
     }
   }

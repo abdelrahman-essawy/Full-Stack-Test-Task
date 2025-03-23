@@ -141,9 +141,6 @@ importers:
       '@easygenerator/validations':
         specifier: workspace:*
         version: link:packages/validations
-      '@easygenerator/validations-nest':
-        specifier: workspace:*
-        version: link:packages/validations-nest
       '@eslint/js':
         specifier: ^9.8.0
         version: 9.22.0

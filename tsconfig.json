@@ -16,10 +16,10 @@
       "path": "./apps/frontend"
     },
     {
-      "path": "./packages/validations-nest"
+      "path": "./packages/validations"
     },
     {
-      "path": "./packages/validations-nest"
+      "path": "./packages/validations"
     }
   ]
 }

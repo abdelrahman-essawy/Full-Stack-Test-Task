@@ -7,7 +7,7 @@ import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator
 import { ERROR_MESSAGES } from '../../common/error-messages';
 import { UnauthorizedException } from '../../common/exceptions';
 import express from 'express';
-import { loginSchema, signUpSchema } from '@easygenerator/validations-nest';
+import { loginSchema, signUpSchema } from '@easygenerator/validations';
 // @ApiBadRequestResponse({
 //   type: BadRequestException,
 // })
