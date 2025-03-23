@@ -1,13 +1,14 @@
 ﻿import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../use-auth.hook';
 import { RouteGuardInterface, RouteGuardOptions } from './types';
+import { useAuthStore } from '../use-auth-store';
 
 export const RouteGuard = (opts: RouteGuardOptions) => {
   const { guards } = opts;
   const [canActivateRoute, setCanActivateRoute] = useState<boolean | string>();
 
-  const { isLoading, isAuthenticated } = useAuth();
+  const { user, isLoading } = useAuthStore();
+  const isAuthenticated = !!user;
 
   useEffect(() => {
     if (isLoading) {

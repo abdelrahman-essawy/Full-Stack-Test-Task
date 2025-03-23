@@ -1,7 +1,6 @@
 import '../styles.css';
 import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { client } from '@easygenerator/api-sdk';
 import { Toaster } from 'react-hot-toast';
 import { AnimatePresence } from 'framer-motion';
 import { AuroraBackground } from '../ui/aurora-background';
@@ -18,11 +17,6 @@ import { BackgroundLines } from '../ui/background-lines';
 import { Header } from '../modules/header';
 
 const queryClient = new QueryClient();
-
-client.setConfig({
-  baseUrl: 'http://localhost:3000',
-  credentials: 'include',
-});
 
 export function App() {
   return (

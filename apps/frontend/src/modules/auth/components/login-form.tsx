@@ -2,14 +2,11 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { authControllerLoginMutation } from '@easygenerator/api-sdk';
-import { useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
 import { Label } from '../../../ui/label';
 import { Input } from '../../../ui/input';
 import { LabelInputContainer } from '../../../ui/label-input-container';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useUserStore } from '../user.store';
+import { NavLink } from 'react-router-dom';
+import { useAuthActions } from '../user-auth-actions';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -17,7 +14,6 @@ const loginSchema = z.object({
 });
 
 export function LoginForm() {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,19 +22,9 @@ export function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const { mutateAsync, isPending } = useMutation({
-    ...authControllerLoginMutation(),
-    onSuccess: (data) => {
-      useUserStore.setState({ user: data.user });
-      toast.success(data.message);
-      navigate('/home');
-    },
-    onError: (error) => toast.error(error.message),
-  });
-
-  const onSubmit = async (data: any) => {
-    await mutateAsync({ body: data });
-  };
+  const { login } = useAuthActions();
+  const isPending = login.isPending;
+  const onSubmit = (data: any) => login.mutateAsync({ body: data });
 
   return (
     <div className="shadow-input mx-auto w-full max-w-md rounded-xl bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black shadow">

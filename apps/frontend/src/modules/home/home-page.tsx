@@ -1,8 +1,8 @@
 ﻿import { Cover } from '../../ui/cover';
-import { useUserStore } from '../auth/user.store';
+import { useAuthStore } from '../auth/use-auth-store';
 
 export const HomePage = () => {
-  const name = useUserStore((state) => state.user?.name);
+  const name = useAuthStore((state) => state.user?.name);
   return (
     <div>
       <h2 className="bg-clip-text  text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl md:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
