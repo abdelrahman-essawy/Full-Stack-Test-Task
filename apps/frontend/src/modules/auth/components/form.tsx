@@ -8,9 +8,10 @@ import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { Label } from '../../../ui/label';
 import { Input } from '../../../ui/input';
-import { cn } from '../../../utils';
 import { motion } from 'framer-motion';
 import { CheckCircle, XCircle } from 'lucide-react';
+import { LabelInputContainer } from '../../../ui/label-input-container';
+import { PasswordValidation } from './password-validation';
 
 export function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -37,11 +38,11 @@ export function SignupForm() {
   };
 
   return (
-    <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black shadow">
-      <h2 className="text-xl font-bold text-[#363E4E] dark:text-neutral-200">
+    <div className="shadow-input mx-auto w-full max-w-md rounded-xl bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black shadow">
+      <h2 className="text-center mt-4 md:mt-0 md:text-left text-xl font-bold text-[#363E4E] dark:text-neutral-200">
         Welcome to <span className="text-[#F0754D]">EasyGenerator</span>
       </h2>
-      <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
+      <p className="text-center md:text-left mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
         Register to get started
       </p>
 
@@ -72,7 +73,7 @@ export function SignupForm() {
           )}
         </LabelInputContainer>
 
-        <div className="mb-4 flex flex-col md:flex-row md:space-x-2">
+        <div className="mb-4 flex flex-col md:flex-row md:space-x-2 space-y-4 md:space-y-0">
           <LabelInputContainer className="w-full">
             <Label htmlFor="password">Password</Label>
             <Input
@@ -120,53 +121,25 @@ export function SignupForm() {
         </div>
 
         <button
-          className="group relative flex w-full items-center justify-center rounded-md bg-[#F0754D] py-2 text-white hover:bg-[#D96744] transition duration-200"
+          className="px-4 py-2 w-full text-white backdrop-blur-sm border border-primary rounded-md hover:shadow-[0px_0px_4px_4px_rgba(0,0,0,0.1)] bg-primary text-sm transition duration-200"
           type="submit"
           disabled={isPending}
         >
           Sign up &rarr;
         </button>
       </form>
+
+      <div className="my-4 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
+
+      <p className="text-sm text-neutral-600 dark:text-neutral-300">
+        Already have an account?{' '}
+        <a
+          href="#"
+          className="text-[#F0754D] hover:underline transition duration-200"
+        >
+          Sign in
+        </a>
+      </p>
     </div>
   );
 }
-
-const PasswordValidation = ({
-  password,
-  rules,
-}: {
-  password: string;
-  rules: {
-    rule: RegExp;
-    label: string;
-  }[];
-}) => {
-  return (
-    <div className="mt-2 space-y-1 text-sm">
-      {rules.map(({ rule, label }, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className={`flex items-center space-x-2 ${
-            rule.test(password) ? 'text-green-600' : 'text-red-500'
-          }`}
-        >
-          {rule.test(password) ? (
-            <CheckCircle size={16} />
-          ) : (
-            <XCircle size={16} />
-          )}
-          <span>{label}</span>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
-const LabelInputContainer = ({ children, className }) => {
-  return (
-    <div className={cn('flex w-full flex-col space-y-2', className)}>
-      {children}
-    </div>
-  );
-};
