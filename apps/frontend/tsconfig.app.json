@@ -37,7 +37,7 @@
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "references": [
     {
-      "path": "../../packages/validations/tsconfig.lib.json"
+      "path": "../../packages/validations-nest/tsconfig.lib.json"
     },
     {
       "path": "../../packages/api-sdk/tsconfig.lib.json"

@@ -2,18 +2,12 @@ import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Body, ConflictException, Controller, Post, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { zodToOpenAPI } from 'nestjs-zod';
-import {
-  LoginReqDto,
-  LoginResDto,
-  loginSchema,
-  SignupReqDto,
-  SignupResDto,
-  signUpSchema,
-} from './dtos';
+import { LoginReqDto, LoginResDto, SignupReqDto, SignupResDto } from './dtos';
 import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator';
 import { ERROR_MESSAGES } from '../../common/error-messages';
 import { UnauthorizedException } from '../../common/exceptions';
 import express from 'express';
+import { loginSchema, signUpSchema } from '@easygenerator/validations-nest';
 // @ApiBadRequestResponse({
 //   type: BadRequestException,
 // })

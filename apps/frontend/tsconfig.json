@@ -3,7 +3,7 @@
   "include": [],
   "references": [
     {
-      "path": "../../packages/validations"
+      "path": "../../packages/validations-nest"
     },
     {
       "path": "../../packages/api-sdk"

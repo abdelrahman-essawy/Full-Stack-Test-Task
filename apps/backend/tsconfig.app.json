@@ -14,7 +14,7 @@
   "exclude": ["eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"],
   "references": [
     {
-      "path": "../../packages/validations/tsconfig.lib.json"
+      "path": "../../packages/validations-nest/tsconfig.lib.json"
     }
   ]
 }

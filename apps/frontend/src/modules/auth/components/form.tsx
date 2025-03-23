@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { passwordRules, signUpSchema } from '@easygenerator/validations';
+import { passwordRules, signUpSchema } from '@easygenerator/validations-nest';
 import { authControllerSignupMutation } from '@easygenerator/api-sdk';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
