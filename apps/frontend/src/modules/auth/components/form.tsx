@@ -12,6 +12,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { LabelInputContainer } from '../../../ui/label-input-container';
 import { PasswordValidation } from './password-validation';
+import { NavLink } from 'react-router-dom';
 
 export function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -133,12 +134,12 @@ export function SignupForm() {
 
       <p className="text-sm text-neutral-600 dark:text-neutral-300">
         Already have an account?{' '}
-        <a
-          href="#"
+        <NavLink
+          to="/login"
           className="text-[#F0754D] hover:underline transition duration-200"
         >
-          Sign in
-        </a>
+          Log in
+        </NavLink>
       </p>
     </div>
   );
