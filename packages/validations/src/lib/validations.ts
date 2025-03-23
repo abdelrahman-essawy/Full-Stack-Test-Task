@@ -5,14 +5,22 @@ export const signUpSchema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   password: z
     .string()
-    .min(8, 'Password must be at least 8 characters long')
-    .regex(/[A-Za-z]/, 'Password must contain at least one letter')
-    .regex(/[0-9]/, 'Password must contain at least one number')
-    .regex(
-      /[^A-Za-z0-9]/,
-      'Password must contain at least one special character'
-    ),
+    .min(8, 'At least 8 characters')
+    .regex(/[A-Za-z]/, 'At least 1 uppercase letter')
+    .regex(/[0-9]/, 'At Least 1 number')
+    .regex(/[^A-Za-z0-9]/, 'At least 1 special character'),
 });
+
+const extractPasswordRules = (schema: z.ZodString) => {
+  return schema._def.checks.map((check) => ({
+    // @ts-expect-error - to be fixed
+    rule: check.kind === 'min' ? new RegExp(`.{${check.value},}`) : check.regex,
+    label: check.message || 'Unnamed rule',
+  }));
+};
+
+const passwordSchema = signUpSchema.shape.password;
+export const passwordRules = extractPasswordRules(passwordSchema);
 
 export const loginSchema = z.object({
   email: z.string().email('Invalid email format'),
