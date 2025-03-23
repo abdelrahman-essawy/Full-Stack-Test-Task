@@ -34,7 +34,7 @@ export function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     await mutateAsync({ body: data });
   };
 

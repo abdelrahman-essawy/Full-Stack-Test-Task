@@ -30,7 +30,7 @@ export const useUserStore = create<UserState>()(
         });
     };
 
-    fetchUser();
+    // fetchUser();
 
     return {
       user: null,
