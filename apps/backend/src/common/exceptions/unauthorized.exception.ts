@@ -26,6 +26,7 @@ export class UnauthorizedException extends HttpException {
   /** The detailed description of the error. */
   @ApiProperty({
     description: 'A description of the error message.',
+    type: 'string',
     example:
       'This error message indicates that the authentication token provided with the request has expired, and therefore the server cannot verify the users identity.',
   })

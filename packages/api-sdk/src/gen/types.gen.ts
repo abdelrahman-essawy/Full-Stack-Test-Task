@@ -46,6 +46,29 @@ export type LoginResDto = {
     user: User;
 };
 
+export type UnauthorizedException = {
+    /**
+     * A unique code identifying the error.
+     */
+    code: 20001 | 20002 | 20003 | 20004 | 20005 | 20006 | 20007 | 20008 | 20009 | 20010 | 20011;
+    /**
+     * Message for the exception
+     */
+    message: string;
+    /**
+     * A description of the error message.
+     */
+    description: string;
+    /**
+     * Timestamp of the exception
+     */
+    timestamp: string;
+    /**
+     * Trace ID of the request
+     */
+    traceId: string;
+};
+
 export type BackendResponseDto = {
     /**
      * Message to the user
@@ -102,11 +125,7 @@ export type AuthControllerLoginData = {
 };
 
 export type AuthControllerLoginErrors = {
-    401: {
-        statusCode: number;
-        message: string;
-        error?: string;
-    };
+    401: UnauthorizedException;
 };
 
 export type AuthControllerLoginError = AuthControllerLoginErrors[keyof AuthControllerLoginErrors];

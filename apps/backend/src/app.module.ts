@@ -22,6 +22,7 @@ import { RequestsLogMiddleware } from './common/middlewares/requests-log-middlew
 @Module({
   imports: [
     LoggerModule.forRootAsync({
+      // @ts-expect-error - We know this is a valid factory
       useFactory: async () => {
         return {
           pinoHttp: {

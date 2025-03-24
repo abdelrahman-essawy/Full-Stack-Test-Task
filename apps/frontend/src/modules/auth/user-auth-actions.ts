@@ -18,7 +18,7 @@ export const useAuthActions = () => {
       toast.success(data.message);
       navigate('/');
     },
-    onError: (error) => toast.error(error.message),
+    onError: (error) => toast.error(error.description),
   });
   const logout = async () => {
     await authControllerLogout();

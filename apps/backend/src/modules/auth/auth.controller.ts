@@ -1,4 +1,10 @@
-import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { Body, ConflictException, Controller, Post, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { zodToOpenAPI } from 'nestjs-zod';
@@ -44,12 +50,9 @@ export class AuthController {
   @ApiOperation({
     summary: 'Login a user',
   })
-  @ApiException(
-    () =>
-      new UnauthorizedException({
-        message: ERROR_MESSAGES.INVALID_CREDENTIALS,
-      })
-  )
+  @ApiUnauthorizedResponse({
+    type: UnauthorizedException,
+  })
   @ApiBody({
     schema: zodToOpenAPI(loginSchema),
   })
