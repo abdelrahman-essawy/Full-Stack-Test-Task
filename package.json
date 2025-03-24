@@ -2,7 +2,9 @@
   "name": "@easygenerator/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prod:start": "serve -s ./apps/frontend/dist -p 4200"
+  },
   "private": true,
   "devDependencies": {
     "@easygenerator/api-sdk": "workspace:*",

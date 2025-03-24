@@ -1,8 +1,5 @@
 {
   "name": "@easygenerator/frontend",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "prod:start": "serve -s ./apps/frontend/dist -p 4200"
-  }
+  "private": true
 }
