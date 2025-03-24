@@ -37,31 +37,33 @@ export const SignupPage = () => {
         onSubmit={handleSubmit((data) => signup.mutateAsync({ body: data }))}
         isPending={signup.isPending}
       >
-        <LabelInputContainer>
-          <Label htmlFor="name">Name</Label>
-          <Input
-            id="name"
-            {...register('name')}
-            placeholder="John Doe"
-            type="text"
-          />
-          {errors.name && (
-            <p className="text-red-500 text-sm">{errors.name.message}</p>
-          )}
-        </LabelInputContainer>
+        <div className="flex flex-row space-x-2 md:flex-col md:space-x-0 md:space-y-4">
+          <LabelInputContainer>
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              {...register('name')}
+              placeholder="John Doe"
+              type="text"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
+          </LabelInputContainer>
 
-        <LabelInputContainer>
-          <Label htmlFor="email">Email Address</Label>
-          <Input
-            id="email"
-            {...register('email')}
-            placeholder="you@example.com"
-            type="email"
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
-          )}
-        </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              id="email"
+              {...register('email')}
+              placeholder="you@example.com"
+              type="email"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </LabelInputContainer>
+        </div>
 
         <div className="flex flex-row space-x-2">
           <LabelInputContainer>
