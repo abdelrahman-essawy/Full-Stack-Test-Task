@@ -58,7 +58,7 @@ cp .env.example .env
 ⚠️ Ensure Docker app is running before starting the backend.
 
 ```bash
-nx run backend:serve:production
+pnpx nx run backend:serve:production
 ```
 #### This command:
 - Pulls and starts the MongoDB instance via Docker.
@@ -67,7 +67,8 @@ nx run backend:serve:production
 
 ### Frontend
 ```bash
-nx run frontend:preview
+pnpx nx run frontend:build
+pnpx nx run frontend:preview
 ```
 #### This command:
 - Builds frontend-dependent packages (e.g., "validations", "api-sdk").
