@@ -3,11 +3,15 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+
+  app.use(helmet());
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -16,7 +20,8 @@ async function bootstrap() {
   app.use(cookieParser());
   app.enableCors({
     credentials: true,
-    origin: 'http://localhost:4200',
+    // in production, this should be set to the frontend URL
+    origin: '*',
   });
 
   // allow swagger in production for sake of testing,

@@ -94,6 +94,7 @@
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
     "framer-motion": "^12.5.0",
+    "helmet": "^8.1.0",
     "lucide-react": "^0.483.0",
     "mongoose": "^8.12.1",
     "motion": "^12.5.0",
