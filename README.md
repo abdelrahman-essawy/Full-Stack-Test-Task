@@ -1,90 +1,91 @@
-# Easygenerator
+# Full Stack Task – Scalable & Modular Architecture
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+This repository is a full stack test task showcasing best practices in modern full stack development, designed for a senior-level role application.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+---
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+![Home](assests/1.png)
+![Login](assests/2.png)
+![Signup](assests/3.png)
 
-## Finish your CI setup
+## Overview
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/6PvauE5tZf)
+This project demonstrates:
+- **Modular Architecture:** A monorepo structure powered by [Nx](https://nx.dev) that separates concerns into different apps and shared packages.
+- **TypeScript:** Written entirely in TypeScript across all applications and libraries.
+- **Modern Tooling:** Leveraging PNPM for package management, ESLint and Prettier for code quality, and Docker for containerization.
 
+---
 
-## Generate a library
+## Project Structure
 
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
+- **apps/**  
+  Contains two applications:
+    - **frontend:** The client-side application.
+    - **backend:** The server-side application.
+
+- **packages/**  
+  Contains shared libraries:
+    - **validations:** Shared validation rules between the frontend and backend.
+    - **api-sdk**  Auto-generated SDK based on backend Swagger docs for type-safe API consumption.
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js:** Ensure you have Node.js (LTS version recommended) installed.
+- **PNPM:** This project uses PNPM for managing dependencies. Install it via:
+
+  ```bash
+  npm install -g pnpm
+- **Docker:** Docker is required to pull and run the MongoDB instance used by this project. Install Docker from docker.com.
+- **NX Console (Optional):** A GUI for viewing commands and the project graph; available for WebStorm and VSCode.
+
+### Installation
+```
+git clone https://github.com/abdelrahman-essawy/Full-Stack-Test-Task.git
+cd Full-Stack-Test-Task
+pnpm install
+cp .env.example .env
 ```
 
-## Run tasks
+## Running the Project
 
-To build the library use:
+### Backend
 
-```sh
-npx nx build pkg1
+Run in production mode:
+
+```bash
+nx run backend:serve:production
 ```
+#### This command:
+- Pulls and starts the MongoDB instance via Docker.
+- Builds backend-dependent packages (e.g., "validations").
+- Builds and serves the backend application in production mode.
 
-To run any task with Nx use:
-
-```sh
-npx nx <target> <project-name>
+### Frontend
+```bash
+nx run frontend:preview
 ```
+#### This command:
+- Builds frontend-dependent packages (e.g., "validations", "api-sdk").
+- Builds and serves the frontend application in production mode.
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+---
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Primary Technologies
+- **Nx:** A set of extensible dev tools for monorepos, with advanced support for TypeScript.
+- **React:** A JavaScript library for building user interfaces.
+- **NestJS:** A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.
+- **Mongoose:** A MongoDB object modeling tool designed to work in an asynchronous environment.
+- **Swagger:** A tool for designing, building, and documenting APIs.
+- **React-Hook-Form:** Performant, flexible, and extensible forms with easy-to-use validation.
+- **Zustand:** A small, fast, and scalable state management library.
+- **React-Query:** A data-fetching library for React that provides tools for managing, caching, synchronizing, and updating server state.
+- **Pino:** A Node.js logger that logs JSON.
+- **Helmet:** Secure Express apps by setting various HTTP headers.
 
-## Versioning and releasing
+### License
 
-To version and release the library use
-
-```
-npx nx release
-```
-
-Pass `--dry-run` to see what would happen without actually releasing the library.
-
-[Learn more about Nx release &raquo;](hhttps://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Keep TypeScript project references up to date
-
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
-
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
-
-```sh
-npx nx sync
-```
-
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
-
-```sh
-npx nx sync:check
-```
-
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
-
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+This project is provided for evaluation and testing purposes as part of a job application process. Please include your own licensing information if you plan to reuse this code for any other projects.

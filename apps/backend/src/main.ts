@@ -19,16 +19,18 @@ async function bootstrap() {
     origin: 'http://localhost:4200',
   });
 
-  if (process.env.NODE_ENV !== 'production') {
-    const config = new DocumentBuilder()
-      .setTitle('API Documentation')
-      .setDescription('This is the API documentation for the backend.')
-      .setVersion('1.0')
-      .addBearerAuth()
-      .build();
-    const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup(globalPrefix, app, document);
-  }
+  // allow swagger in production for sake of testing,
+  // but should be disabled in production
+  // if (process.env.NODE_ENV !== 'production') {
+  const config = new DocumentBuilder()
+    .setTitle('API Documentation')
+    .setDescription('This is the API documentation for the backend.')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup(globalPrefix, app, document);
+  // }
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
