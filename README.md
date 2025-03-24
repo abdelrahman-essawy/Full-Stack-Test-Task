@@ -19,6 +19,8 @@ This project demonstrates:
 
 ## Project Structure
 
+![Project Structure](assests/4.png)
+
 - **apps/**  
   Contains two applications:
     - **frontend:** The client-side application.
@@ -27,7 +29,7 @@ This project demonstrates:
 - **packages/**  
   Contains shared libraries:
     - **validations:** Shared validation rules between the frontend and backend.
-    - **api-sdk**  Auto-generated SDK based on backend Swagger docs for type-safe API consumption.
+    - **api-sdk**  Auto-generated SDK based on backend Swagger docs for type-safe API consumption by the frontend.
 ---
 
 ## Getting Started
