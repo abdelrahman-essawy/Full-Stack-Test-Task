@@ -86,6 +86,8 @@ nx run frontend:preview
 - **Pino:** A Node.js logger that logs JSON.
 - **Helmet:** Secure Express apps by setting various HTTP headers.
 
+---
+
 ### License
 
 This project is provided for evaluation and testing purposes as part of a job application process. Please include your own licensing information if you plan to reuse this code for any other projects.
