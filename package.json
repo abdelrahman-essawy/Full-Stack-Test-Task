@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "frontend:prod": "serve -s ./apps/frontend/dist -p 4200"
+    "frontend:prod": "serve -s ./apps/frontend/dist -p 4200",
+    "backend:prod": "node ./apps/backend/dist/main.js"
   },
   "private": true,
   "devDependencies": {
