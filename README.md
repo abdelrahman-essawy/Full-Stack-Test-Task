@@ -53,8 +53,7 @@ cp .env.example .env
 ## Running the Project
 
 ### Backend
-
-Run in production mode:
+⚠️ Ensure Docker app is running before starting the backend.
 
 ```bash
 nx run backend:serve:production
