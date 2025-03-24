@@ -4,8 +4,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import { AnimatePresence } from 'framer-motion';
 import { AuroraBackground } from '../ui/aurora-background';
-import { SignupForm } from '../modules/auth/components/signup-form';
-import { LoginForm } from '../modules/auth/components/login-form';
 import { HomePage } from '../modules/home/home-page';
 import {
   isNotSignedIn,
@@ -15,6 +13,8 @@ import {
 import { AnimatedDev } from '../ui/animated-dev';
 import { BackgroundLines } from '../ui/background-lines';
 import { Header } from '../modules/header';
+import { SignupPage } from '../modules/auth/signup-page';
+import { LoginPage } from '../modules/auth/login-page';
 
 const queryClient = new QueryClient();
 
@@ -36,15 +36,13 @@ export default App;
 export function AppRoutes() {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={<RouteGuard guards={[isNotSignedIn('/home')]} />}
-      >
+      <Route element={<RouteGuard guards={[isNotSignedIn('/')]} />}>
         <Route
           index
+          path={'signup'}
           element={
             <AnimatedDev>
-              <SignupForm />
+              <SignupPage />
             </AnimatedDev>
           }
         />
@@ -52,16 +50,13 @@ export function AppRoutes() {
           path="login"
           element={
             <AnimatedDev>
-              <LoginForm />
+              <LoginPage />
             </AnimatedDev>
           }
         />
       </Route>
 
-      <Route
-        path="/home"
-        element={<RouteGuard guards={[isSignedIn('/login')]} />}
-      >
+      <Route path="/" element={<RouteGuard guards={[isSignedIn('/login')]} />}>
         <Route
           index
           element={

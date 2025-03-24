@@ -15,7 +15,7 @@ export const useAuthActions = () => {
     onSuccess: (data) => {
       useAuthStore.setState({ user: data.user });
       toast.success(data.message);
-      navigate('/home');
+      navigate('/');
     },
     onError: (error) => toast.error(error.message),
   });
