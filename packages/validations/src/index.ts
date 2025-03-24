@@ -12,11 +12,19 @@ export const signUpSchema = z.object({
 });
 
 const extractPasswordRules = (schema: z.ZodString) => {
-  return schema._def.checks.map((check) => ({
-    // @ts-expect-error - to be fixed
-    rule: check.kind === 'min' ? new RegExp(`.{${check.value},}`) : check.regex,
-    label: check.message || 'Unnamed rule',
-  }));
+  return schema._def.checks.map((check) => {
+    if (check.kind === 'min') {
+      return {
+        rule: new RegExp(`^(?=.{${check.value},})`),
+        label: check.message || 'Unnamed rule',
+      };
+    }
+    return {
+      // @ts-expect-error - We know this is a regex check
+      rule: check.regex,
+      label: check.message || 'Unnamed rule',
+    };
+  });
 };
 
 const passwordSchema = signUpSchema.shape.password;
