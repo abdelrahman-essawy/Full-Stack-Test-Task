@@ -1,7 +1,7 @@
-﻿import { LabelInputContainer } from '../../ui/label-input-container';
-import { Label } from '../../ui/label';
-import { Input } from '../../ui/input';
-import { AuthForm } from './components/form';
+﻿import { LabelInputContainer } from '../../../ui/label-input-container';
+import { Label } from '../../../ui/label';
+import { Input } from '../../../ui/input';
+import { AuthForm } from '../components/form';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { passwordRules, signUpSchema } from '@easygenerator/validations';
@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { authControllerSignupMutation } from '@easygenerator/api-sdk';
-import { PasswordValidation } from './components/password-validation';
+import { PasswordValidation } from '../components/password-validation';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 

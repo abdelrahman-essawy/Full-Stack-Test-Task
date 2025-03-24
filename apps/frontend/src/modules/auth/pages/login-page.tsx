@@ -1,8 +1,8 @@
-﻿import { LabelInputContainer } from '../../ui/label-input-container';
-import { Label } from '../../ui/label';
-import { Input } from '../../ui/input';
-import { AuthForm } from './components/form';
-import { useAuthActions } from './user-auth-actions';
+﻿import { LabelInputContainer } from '../../../ui/label-input-container';
+import { Label } from '../../../ui/label';
+import { Input } from '../../../ui/input';
+import { AuthForm } from '../components/form';
+import { useAuthActions } from '../user-auth-actions';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '@easygenerator/validations';

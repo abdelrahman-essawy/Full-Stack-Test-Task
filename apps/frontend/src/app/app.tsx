@@ -13,8 +13,8 @@ import {
 import { AnimatedDev } from '../ui/animated-dev';
 import { BackgroundLines } from '../ui/background-lines';
 import { Header } from '../modules/header';
-import { SignupPage } from '../modules/auth/signup-page';
-import { LoginPage } from '../modules/auth/login-page';
+import { SignupPage } from '../modules/auth/pages/signup-page';
+import { LoginPage } from '../modules/auth/pages/login-page';
 
 const queryClient = new QueryClient();
 
