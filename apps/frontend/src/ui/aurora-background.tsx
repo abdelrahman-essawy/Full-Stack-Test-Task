@@ -18,7 +18,7 @@ export const AuroraBackground = ({
     <main>
       <div
         className={cn(
-          'transition-bg relative flex h-[100vh] flex-col items-center justify-center bg-[#FCE2D5]/20 text-[#3D1E12] dark:bg-[#573627]',
+          'transition-bg relative flex h-[100vh] flex-col items-center justify-center bg-[#FCE2D5]/20 text-[#3D1E12]',
           className
         )}
         {...props}
@@ -50,7 +50,7 @@ export const AuroraBackground = ({
         >
           <div
             className={cn(
-              `after:animate-aurora pointer-events-none absolute -inset-[10px] [background-image:var(--white-gradient),var(--aurora)] [background-size:300%,_200%] [background-position:50%_50%,50%_50%] opacity-50 blur-[10px] invert filter will-change-transform [--aurora:repeating-linear-gradient(100deg,var(--orange-500)_10%,var(--orange-400)_15%,var(--peach-300)_20%,var(--coral-200)_25%,var(--beige-100)_30%)] [--dark-gradient:repeating-linear-gradient(100deg,var(--brown-900)_0%,var(--brown-900)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--brown-900)_16%)] [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)] after:absolute after:inset-0 after:[background-image:var(--white-gradient),var(--aurora)] after:[background-size:200%,_100%] after:[background-attachment:fixed] after:mix-blend-difference after:content-[""] dark:[background-image:var(--dark-gradient),var(--aurora)] dark:invert-0 after:dark:[background-image:var(--dark-gradient),var(--aurora)]`,
+              `after:animate-aurora pointer-events-none absolute -inset-[10px] [background-image:var(--white-gradient),var(--aurora)] [background-size:300%,_200%] [background-position:50%_50%,50%_50%] opacity-50 blur-[10px] invert filter will-change-transform [--aurora:repeating-linear-gradient(100deg,var(--orange-500)_10%,var(--orange-400)_15%,var(--peach-300)_20%,var(--coral-200)_25%,var(--beige-100)_30%)] [--dark-gradient:repeating-linear-gradient(100deg,var(--brown-900)_0%,var(--brown-900)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--brown-900)_16%)] [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)] after:absolute after:inset-0 after:[background-image:var(--white-gradient),var(--aurora)] after:[background-size:200%,_100%] after:[background-attachment:fixed] after:mix-blend-difference after:content-[""]`,
 
               showRadialGradient &&
                 `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`

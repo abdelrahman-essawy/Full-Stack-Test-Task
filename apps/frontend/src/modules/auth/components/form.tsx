@@ -25,11 +25,11 @@ export const AuthForm = ({
   footerLink,
   children,
 }: AuthFormProps) => (
-  <div className="shadow-input mx-auto w-full max-w-md rounded-xl bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black shadow">
-    <h2 className="text-center mt-4 md:mt-0 md:text-left text-xl font-bold text-[#363E4E] dark:text-neutral-200">
+  <div className="shadow-input mx-auto w-full max-w-md rounded-xl bg-white p-4 md:rounded-2xl md:p-8 shadow">
+    <h2 className="text-center mt-4 md:mt-0 md:text-left text-xl font-bold text-[#363E4E]">
       {title} <span className="text-[#F0754D]">EasyGenerator</span>
     </h2>
-    <p className="text-center md:text-left mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
+    <p className="text-center md:text-left mt-2 max-w-sm text-sm text-neutral-600">
       {subtitle}
     </p>
 
@@ -38,7 +38,7 @@ export const AuthForm = ({
       <PrimaryButton>{buttonText} &rarr;</PrimaryButton>
     </form>
 
-    <div className="my-4 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
+    <div className="my-4 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent" />
 
     <BottomLink {...footerLink} />
   </div>
@@ -49,7 +49,7 @@ export const BottomLink = ({
   href,
   hrefText,
 }: AuthFormProps['footerLink']) => (
-  <p className="text-sm text-neutral-600 dark:text-neutral-300">
+  <p className="text-sm text-neutral-600">
     {title}{' '}
     <NavLink
       to={href}
