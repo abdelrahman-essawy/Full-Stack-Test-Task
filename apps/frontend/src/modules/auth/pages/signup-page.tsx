@@ -63,7 +63,7 @@ export const SignupPage = () => {
           )}
         </LabelInputContainer>
 
-        <div className="flex flex-col md:flex-row md:space-x-2 space-y-4 md:space-y-0">
+        <div className="flex flex-row space-x-2">
           <LabelInputContainer>
             <Label htmlFor="password">Password</Label>
             <Input
