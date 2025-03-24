@@ -24,7 +24,6 @@
         "executor": "@nx/js:node",
         "defaultConfiguration": "development",
         "dependsOn": [
-          "docker",
           "build"
         ],
         "options": {
