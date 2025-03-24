@@ -1,6 +1,7 @@
 const { NxAppRspackPlugin } = require('@nx/rspack/app-plugin');
 const { NxReactRspackPlugin } = require('@nx/rspack/react-plugin');
 const { join } = require('path');
+const { EnvironmentPlugin } = require('@rspack/core');
 
 module.exports = {
   output: {
@@ -30,6 +31,9 @@ module.exports = {
       // Uncomment this line if you don't want to use SVGR
       // See: https://react-svgr.com/
       // svgr: false
+    }),
+    new EnvironmentPlugin({
+      REACT_APP_API_URL: process.env.REACT_APP_API_URL,
     }),
   ],
 };

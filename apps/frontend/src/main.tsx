@@ -2,9 +2,10 @@ import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
 import { client } from '@easygenerator/api-sdk';
+import { env } from './env';
 
 client.setConfig({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: env.REACT_APP_API_URL,
   credentials: 'include',
 });
 
