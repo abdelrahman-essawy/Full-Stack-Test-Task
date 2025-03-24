@@ -18,12 +18,14 @@ async function bootstrap() {
     })
   );
   app.use(cookieParser());
-  app.enableCors({
-    credentials: true,
-    // in production, this should be set to the frontend URL
-    origin: '*',
-  });
 
+  app.enableCors({
+    // to be changed after deployment
+    origin: '*',
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
   // allow swagger in production for sake of testing,
   // but should be disabled in production
   // if (process.env.NODE_ENV !== 'production') {
