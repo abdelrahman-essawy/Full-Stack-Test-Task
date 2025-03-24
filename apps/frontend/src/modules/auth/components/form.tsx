@@ -1,5 +1,6 @@
 ﻿import { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
+import { PrimaryButton } from '../../../components/primary-button';
 
 // @ts-expect-error - we are passing children to the form
 interface AuthFormProps extends Partial<HTMLFormElement> {
@@ -34,13 +35,7 @@ export const AuthForm = ({
 
     <form className="my-8 flex flex-col space-y-4" onSubmit={onSubmit}>
       {children}
-      <button
-        className="px-4 py-2 w-full text-white backdrop-blur-sm border border-primary rounded-md hover:shadow-[0px_0px_4px_4px_rgba(0,0,0,0.1)] bg-primary text-sm transition duration-200"
-        type="submit"
-        disabled={isPending}
-      >
-        {buttonText} &rarr;
-      </button>
+      <PrimaryButton>{buttonText} &rarr;</PrimaryButton>
     </form>
 
     <div className="my-4 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />

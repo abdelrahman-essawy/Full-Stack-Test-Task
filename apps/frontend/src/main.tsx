@@ -1,8 +1,6 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
-import ErrorBoundary from './error-boundary';
-import { BrowserRouter } from 'react-router-dom';
 import { client } from '@easygenerator/api-sdk';
 
 client.setConfig({
@@ -15,10 +13,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <ErrorBoundary>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ErrorBoundary>
+    <App />
   </StrictMode>
 );

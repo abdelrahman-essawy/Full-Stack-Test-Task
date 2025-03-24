@@ -1,8 +1,8 @@
 ﻿import LogoSvg from '../assets/logo.svg';
-import { useAuthActions } from './auth/user-auth-actions';
-import { useAuthStore } from './auth/use-auth-store';
+import { useAuthActions } from '../modules/auth/user-auth-actions';
+import { useAuthStore } from '../modules/auth/use-auth-store';
 
-export const Header = () => {
+export const Navbar = () => {
   const { user } = useAuthStore();
   const { logout } = useAuthActions();
 

@@ -6,6 +6,7 @@ import { useAuthActions } from '../user-auth-actions';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '@easygenerator/validations';
+import { Container } from '../../../components/container';
 
 export const LoginPage = () => {
   const {
@@ -16,43 +17,45 @@ export const LoginPage = () => {
   const { login } = useAuthActions();
 
   return (
-    <AuthForm
-      title="Welcome Back to"
-      subtitle="Log in to continue"
-      buttonText="Log in"
-      footerLink={{
-        title: "Don't have an account?",
-        href: '/signup',
-        hrefText: 'Sign up',
-      }}
-      onSubmit={handleSubmit((data) => login.mutateAsync({ body: data }))}
-      isPending={login.isPending}
-    >
-      <LabelInputContainer>
-        <Label htmlFor="email">Email Address</Label>
-        <Input
-          id="email"
-          {...register('email')}
-          placeholder="you@example.com"
-          type="email"
-        />
-        {errors.email && (
-          <p className="text-red-500 text-sm">{errors.email.message}</p>
-        )}
-      </LabelInputContainer>
+    <Container>
+      <AuthForm
+        title="Welcome Back to"
+        subtitle="Log in to continue"
+        buttonText="Log in"
+        footerLink={{
+          title: "Don't have an account?",
+          href: '/signup',
+          hrefText: 'Sign up',
+        }}
+        onSubmit={handleSubmit((data) => login.mutateAsync({ body: data }))}
+        isPending={login.isPending}
+      >
+        <LabelInputContainer>
+          <Label htmlFor="email">Email Address</Label>
+          <Input
+            id="email"
+            {...register('email')}
+            placeholder="you@example.com"
+            type="email"
+          />
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.email.message}</p>
+          )}
+        </LabelInputContainer>
 
-      <LabelInputContainer>
-        <Label htmlFor="password">Password</Label>
-        <Input
-          id="password"
-          {...register('password')}
-          placeholder="••••••••"
-          type="password"
-        />
-        {errors.password && (
-          <p className="text-red-500 text-sm">{errors.password.message}</p>
-        )}
-      </LabelInputContainer>
-    </AuthForm>
+        <LabelInputContainer>
+          <Label htmlFor="password">Password</Label>
+          <Input
+            id="password"
+            {...register('password')}
+            placeholder="••••••••"
+            type="password"
+          />
+          {errors.password && (
+            <p className="text-red-500 text-sm">{errors.password.message}</p>
+          )}
+        </LabelInputContainer>
+      </AuthForm>
+    </Container>
   );
 };

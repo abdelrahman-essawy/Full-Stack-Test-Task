@@ -1,6 +1,7 @@
 ﻿import {
   authControllerLoginMutation,
   authControllerLogout,
+  authControllerSignupMutation,
 } from '@easygenerator/api-sdk';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
@@ -24,8 +25,18 @@ export const useAuthActions = () => {
     useAuthStore.setState({ user: null });
     navigate('/login');
   };
+
+  const signup = useMutation({
+    ...authControllerSignupMutation(),
+    onSuccess: (data) => {
+      toast.success(data.message);
+      navigate('/login');
+    },
+    onError: (error) => toast.error(error.message),
+  });
   return {
     login,
     logout,
+    signup,
   };
 };
